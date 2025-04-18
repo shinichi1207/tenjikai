@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QRコード生成アプリ</title>
+</head>
+<body>
+    <h1>QRコード生成アプリ</h1>
+
+    <label for="company">お会社名:</label><br>
+    <input type="text" id="company" name="company" required><br><br>
+
+    <label for="name">お名前:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="guests">来場人数:</label><br>
+    <input type="number" id="guests" name="guests" required><br><br>
+
+    <label for="contact">弊社担当者:</label><br>
+    <select id="contact" name="contact" required>
+        <option value="">選択してください</option>
+        <option value="11城">11城</option>
+        <option value="12清田">12清田</option>
+        <option value="14岩尾">14岩尾</option>
+        <option value="15宮脇">15宮脇</option>
+        <option value="17秦">17秦</option>
+        <option value="19近藤">19近藤</option>
+        <option value="21戸上">21戸上</option>
+        <option value="24塩崎">24塩崎</option>
+        <option value="26丸山">26丸山</option>
+        <option value="28松崎">28松崎</option>
+        <option value="29山井">29山井</option>
+        <option value="31財津">31財津</option>
+        <option value="32齋藤">32齋藤</option>
+        <option value="34髙井">34髙井</option>
+        <option value="35津末">35津末</option>
+        <option value="36田中">36田中</option>
+        <option value="37辻">37辻</option>
+        <option value="38西脇">38西脇</option>
+        <option value="39安部">39安部</option>
+        <option value="41佐藤（こう）">41佐藤（こう）</option>
+        <option value="44阿部">44阿部</option>
+        <option value="45七五三">45七五三</option>
+        <option value="46高原">46高原</option>
+        <option value="47三井">47三井</option>
+        <option value="48和田">48和田</option>
+        <option value="49笠崎">49笠崎</option>
+        <option value="51釘宮">51釘宮</option>
+        <option value="52木崎">52木崎</option>
+        <option value="53平井">53平井</option>
+        <option value="54佐藤（やす）">54佐藤（やす）</option>
+        <option value="57丸井">57丸井</option>
+        <option value="58新谷">58新谷</option>
+        <option value="60井上">60井上</option>
+        <option value="61冨髙">61冨髙</option>
+        <option value="62佐藤（健）">62佐藤（健）</option>
+        <option value="63田邉">63田邉</option>
+        <option value="64堀田">64堀田</option>
+        <option value="65首藤">65首藤</option>
+        <option value="66一丸">66一丸</option>
+        <option value="67都留">67都留</option>
+        <option value="69遠嶋">69遠嶋</option>
+        <option value="70後藤">70後藤</option>
+        <option value="71大木">71大木</option>
+        <option value="73衛藤">73衛藤</option>
+        <option value="74中野">74中野</option>
+        <option value="75治郎丸">75治郎丸</option>
+        <option value="76泥谷">76泥谷</option>
+        <option value="79大石">79大石</option>
+        <option value="80増尾">80増尾</option>
+        <option value="81吉川">81吉川</option>
+        <option value="82合澤">82合澤</option>
+        <option value="85田村">85田村</option>
+        <option value="86馬見塚">86馬見塚</option>
+        <option value="87阿南">87阿南</option>
+        <option value="88草牧">88草牧</option>
+        <option value="89小松">89小松</option>
+        <option value="90平山">90平山</option>
+        <option value="91吉野">91吉野</option>
+        <option value="92大村">92大村</option>
+        <option value="94木村">94木村</option>
+        <option value="97濵田">97濵田</option>
+        <option value="98祝園">98祝園</option>
+    </select><br><br>
+
+    <button onclick="generateQRCode()">QRコード生成</button>
+
+    <h2>生成されたQRコード:</h2>
+    <img id="qrcode" alt="QR Code will appear here" style="margin-top: 20px;">
+
+    <script>
+        function generateQRCode() {
+            const company = document.getElementById('company').value;
+            const name = document.getElementById('name').value;
+            const guests = document.getElementById('guests').value;
+            const contact = document.getElementById('contact').value;
+
+            if (!company || !name || !guests || !contact) {
+                alert('すべての項目を入力してください');
+                return;
+            }
+
+            const qrData = `${company},${name},${guests},${contact}`;
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=200x200`;
+            document.getElementById('qrcode').src = qrUrl;
+        }
+    </script>
+</body>
+</html>
